@@ -10,7 +10,9 @@ public class TestClass {
 		
 		testHomePage();
 		testLoginPage();
-		testRegisterPage();
+		testRegisterPage(); 
+		testSearchBox(); 
+		testFullPage();
 		
 	}
 	
@@ -33,6 +35,7 @@ public class TestClass {
 		    driver.findElement(By.className("mat-button-wrapper")).click();
 		    Thread.sleep(5000);
 		    System.out.println("Test Completed");
+		    driver.close();
 			
 	}
 	
@@ -50,7 +53,7 @@ public class TestClass {
 		
 		
 	}
-	
+	// Tests the register functionality with a correct all correct details
 	public static void testRegisterPage( ) throws InterruptedException{
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://fd04gdsd.com.s3-website-us-west-2.amazonaws.com/signup");
@@ -68,6 +71,53 @@ public class TestClass {
 		
 		
 	}
+	
+	//tests the search box functionality
+	public static void testSearchBox() throws InterruptedException{
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://fd04gdsd.com.s3-website-us-west-2.amazonaws.com");
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/mat-toolbar/div[1]/div/input")).sendKeys("android");
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/mat-toolbar/div[1]/div/div/button")).click();
+		Thread.sleep(5000);
+		System.out.println("Test Completed");
+		driver.close();
+		
+	}
+	
+	//Tests the login, search, Detail and Send message functionalities all at once 
+	public static void testFullPage() throws InterruptedException{
+		 WebDriver driver = new ChromeDriver();
+		driver.get("http://fd04gdsd.com.s3-website-us-west-2.amazonaws.com");
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/mat-toolbar/div[2]/button[1]/span")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.name("username")).sendKeys("seun");
+		driver.findElement(By.name("password")).sendKeys("aero4321");
+		Thread.sleep(2000);
+		driver.findElement(By.className("submit")).click();
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/mat-toolbar/div[1]/div/input")).sendKeys("android");
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/mat-toolbar/div[1]/div/div/button")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/app-product-list/div/app-product[1]/mat-card/mat-card-actions/button[3]/span")).click();
+		driver.findElement(By.xpath("//*[@id='mat-input-10']")).sendKeys("I like it");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/app-root/app-nav/mat-sidenav-container/mat-sidenav-content/app-product-detail/mat-card/div/div/div[1]/button/span")).click();
+		Thread.sleep(2000);
+		
+		
+		System.out.println("Test Completed");
+		driver.close();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
